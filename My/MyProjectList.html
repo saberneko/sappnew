@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+	</head>
+	<style>
+		.mui-bar-nav ~ .mui-content .mui-pull-top-pocket {
+			top: 200px !important;
+		}
+	</style>
+
+	<body>
+
+		<div class="mui-content">
+			<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
+				<a id="back" class="mui-icon mui-icon-left-nav mui-pull-left mui-back-color"></a>
+				<h1 class="mui-title">点滴记录</h1>
+				<button id="CreateApplication.html" onclick="NewOpenWindow(this.id);" class=" mui-pull-right mui-btn-link" style="font-weight: 2000;color: #000000;">＋</button>
+			</header>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/config.js"></script>
+	<script type="text/javascript">
+		var requrl = "MyProjectList_Sub.html" + (getQueryString("id") == null ? "" : ("?id=" + getQueryString("id")));
+		//		console.log(getQueryString("id"));
+		//console.log(requrl)
+		//启用双击监听
+		mui.init({
+			gestureConfig: {
+				doubletap: true
+			},
+			subpages: [{
+				url: requrl,
+				id: 'MyProjectList_Sub.html',
+				styles: {
+					top: '45px',
+					bottom: '0px',
+				}
+			}]
+		});
+		mui.plusReady(function(){
+			plus.webview.getWebviewById("main").close();
+		})
+		var contentWebview = null;
+		document.querySelector('header').addEventListener('doubletap', function() {
+			if (contentWebview == null) {
+				contentWebview = plus.webview.currentWebview().children()[0];
+			}
+			contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+		});
+		document.getElementById("back").addEventListener("tap", function() {
+			mui.openWindow({
+				id: 'main',
+				url: '../main.html'
+			})
+		});
+	</script>
+
+</html>

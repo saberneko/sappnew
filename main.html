@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/adding.css" rel="stylesheet" />
+	</head>
+	<style>
+		.content-text {
+			padding: 40px 15px;
+		}
+	</style>
+
+	<body>
+
+		<!--<nav class="mui-bar mui-bar-tab" style="z-index: 999;">
+			<a id="tab_index" class="mui-tab-item mui-active" href="subdiv_index">
+				<span class="mui-icon mui-icon-home"></span>
+				<span onclick="getHot5ProjectList()" class="mui-tab-label">豆芽</span>
+			</a>
+			<a id="tab_setting" class="mui-tab-item" href="subdiv_setting">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>-->
+		<div class="mui-content">
+			<!--<div id="subdiv_index" class="mui-control-content mui-active">-->
+			<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
+				<h1 class="mui-title">豆芽儿</h1>
+				<button id='setting' onclick="NewApplication();" class=" mui-pull-right mui-btn-link">创建</button>
+			</header>
+
+			<!--<div style="background-color: #efeff4;position:fixed;top: 44px;padding: 10px; z-index: 999;">
+					<div id="segmentedControl" class="mui-segmented-control">
+						<a class="mui-control-item mui-active" href="#item1">
+							我要关注
+						</a>
+						<a class="mui-control-item" href="#item2">
+							谁是大神
+						</a>
+						<a class="mui-control-item" href="#item3">
+							统计预测
+						</a>
+					</div>
+				</div>
+				<div style="margin-top: 105px;">
+					<div id="item1" class="mui-control-content mui-active">
+						<div id="slider" class="mui-slider">
+							<div class="mui-slider-group mui-slider-loop">
+								<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+			<!--<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="#">
+										<img src="images/img1.png">
+									</a>
+								</div>-->
+			<!-- 第一张 -->
+			<!--<div class="mui-slider-item">
+									<a href="#">
+										<img src="images/img1.png">
+									</a>
+								</div>-->
+			<!-- 第二张 -->
+			<!--<div class="mui-slider-item">
+									<a href="#">
+										<img src="images/img1.png">
+									</a>
+								</div>-->
+			<!-- 第三张 -->
+			<!--<div class="mui-slider-item">
+									<a href="#">
+										<img src="images/img1.png">
+									</a>
+								</div>-->
+			<!-- 第四张 -->
+			<!--<div class="mui-slider-item">
+									<a href="#">
+										<img src="images/img1.png">
+									</a>
+								</div>-->
+			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+			<!--<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="#">
+										<img src="images/img1.png">
+									</a>
+								</div>
+							</div>-->
+			<!--<div class="mui-slider-indicator">
+								<div class="mui-indicator mui-active"></div>
+								<div class="mui-indicator"></div>
+								<div class="mui-indicator"></div>
+								<div class="mui-indicator"></div>
+							</div>-->
+			<!--</div>-->
+			<!--<ul class="mui-table-view mui-grid-view mui-grid-9" id="BigMatterList" style="background-color: #FFFFFF;">
+							
+						</ul>
+						<ul class="mui-table-view " id="Hot5ProjectList">
+							
+						</ul>
+					</div>
+					<div id="item2" class="mui-control-content">
+						<ul class="mui-table-view" id="ManitoList">
+							
+						</ul>
+					</div>
+					<div id="item3" class="mui-control-content">
+						<div id="StatisticalList" class="mui-panel-view">
+							
+						</div>
+					</div>
+				</div>
+			</div>-->
+			<!--个人主页-->
+			<!--<div id="subdiv_setting" class="mui-control-content">
+				<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
+					<h1 class="mui-title">个人主页</h1>
+				</header>
+				<div id="tabbar-with-setting" style="margin-top:60px;">
+					<ul class="mui-table-view mui-table-view-chevron" style="margin:10px 0px 15px 0px;">
+						<li class="mui-table-view-cell mui-media mui-table-view-cellExt">
+							<a class="mui-navigate-right" id="My/MyProfile.html" onclick="NewOpenWindow(this.id)">
+								<img id="userimg" class="mui-media-object mui-pull-left" src="images/user-photo.png">
+								<div class="mui-media-body">
+									<label id="TLM_name"></label>
+									<p class='mui-ellipsis' id="TLM_gh"></p>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="mui-table-view" style="margin-top: 15px;">
+						<li class="mui-table-view-cell mui-table-view-cellExt">
+							<a class="mui-navigate-right" id="My/MyProjectList.html" onclick="NewOpenWindow(this.id);">
+							点滴记录
+						</a>
+						</li>
+						<li class="mui-table-view-cell mui-table-view-cellExt">
+							<a class="mui-navigate-right" id="My/SeekScore.html" onclick="NewOpenWindow(this.id);">
+							成绩查询
+						</a>
+						</li>
+						<li class="mui-table-view-cell mui-table-view-cellExt">
+							<a class="mui-navigate-right" id="My/MyRank.html" onclick="NewOpenWindow(this.id);">
+							我的排名
+						</a>
+						</li>
+					</ul>
+
+					<ul class="mui-table-view" style="margin-top: 15px;">
+						<li class="mui-table-view-cell mui-table-view-cellExt">
+							<a class="mui-navigate-right" id="My/MyApplicationList.html" onclick="NewOpenWindow(this.id);">
+							系统消息
+						</a>
+						</li>
+						<li class="mui-table-view-cell mui-table-view-cellExt">
+							<a class="mui-navigate-right" id="My/MyApplicationList.html" onclick="NewOpenWindow(this.id);">
+							意见反馈
+						</a>
+						</li>
+					</ul>
+
+					<ul class="mui-table-view" style="margin-top: 15px;">
+						<li class="mui-table-view-cell mui-table-view-cellExt">
+							<a class="mui-navigate-right" id="My/aboutus.html" onclick="NewOpenWindow(this.id);">
+							关于我们
+						</a>
+						</li>
+					</ul>
+
+					<ul class="mui-table-view" style="margin-top: 25px;">
+						<li class="mui-table-view-cell mui-table-view-cellExt">
+							<a id="exit" style="text-align: center;color: #FF3B30;">
+							退出
+						</a>
+						</li>
+					</ul>
+				</div>
+			</div>-->
+		</div>
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/config.js"></script>
+		<script>
+			mui.init({
+				gestureConfig: {
+					doubletap: true
+				},
+				subpages: [{
+					url: 'lndex.html',
+					id: 'Index',
+					createNew: true,
+					extras: {
+						contentData: '1'
+					},
+					styles: {
+						top: '45px',
+						bottom: '0px',
+					}
+				}]
+			})
+//			window.addEventListener('newInfo', function() {
+//					alert("3232");
+//					mui.init({
+//						gestureConfig: {
+//							doubletap: true
+//						},
+//						subpages: [{
+//							url: 'lndex.html',
+//							id: 'Index',
+//							createNew: true,
+//							styles: {
+//								top: '45px',
+//								bottom: '0px',
+//							}
+//						}]
+//					});
+//				})
+				//mui初始化
+				//监听刷新事件newInfo并更新TOP5列表
+				//			window.addEventListener('newInfo', function() {
+				//					getHot5ProjectList();
+				//				})
+				//			window.addEventListener('refreshTopItems',function(){
+				//				getHot5ProjectList();
+				//			})
+				//			function triggerTap(tabid) {
+				//				var targetTab = document.getElementById(tabid);
+				//				//模拟点击
+				//				mui.trigger(targetTab, 'tap');
+				//				//切换选项卡高亮
+				//				var currentTab = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+				//				if (targetTab !== currentTab) {
+				//					currentTab.classList.remove('mui-active');
+				//					targetTab.classList.add('mui-active');
+				//				}
+				//			}
+				//			var slider = mui("#slider");
+				//			slider.slider({
+				//				interval: 5000
+				//			});
+				//			var activeTab = "subdiv_index";
+				//			//选项卡点击事件
+				//			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				//				var targetTab = this.getAttribute('href');
+				//				if (targetTab == "subdiv_index") {
+				//					getBigMatterList();
+				//					getHot5ProjectList();
+				//					GetManito();
+				//				}
+				//				if (targetTab == activeTab) {
+				//					return;
+				//				}
+				//				//显示目标选项卡
+				//				if (targetTab.indexOf("subdiv") > -1) {
+				//					document.getElementById(targetTab).style.display = "block";
+				//				} else {
+				//					plus.webview.show(targetTab, 'auto');
+				//				}
+				//				//隐藏当前;
+				//				if (activeTab.indexOf("subdiv") > -1) {
+				//					document.getElementById(activeTab).style.display = "none";
+				//				} else {
+				//					plus.webview.hide(activeTab);
+				//				}
+				//				activeTab = targetTab;
+				//			});
+				//			mui.plusReady(function() {
+				//				getBigMatterList();
+				//				getHot5ProjectList();
+				//				GetManito();
+				//				GetStatistical();
+				//				//获取当前用户信息
+				//				mui.ajax({
+				//					url: GP.ServiceUrl + "/Service/userinfo.ashx?r=" + Date.now().toString(),
+				//					type: "GET",
+				//					data: {},
+				//					dataType: "json",
+				//					success: function(dat) {
+				//						//console.log(dat);
+				//						window.localStorage.user = JSON.stringify(dat[0]);
+				//						if (dat[0].Name) {
+				//							mui("#TLM_name")[0].innerHTML = dat[0].Name;
+				//						}
+				//						if (dat[0].GP_No) {
+				//							mui("#TLM_gh")[0].innerHTML = dat[0].GP_No;
+				//						}
+				//						window.localStorage.SystemUserId = dat[0].SystemUserId;
+				//					},
+				//					error: function() {
+				//						mui.alert("获取用户信息发生错误，请退出程序后重试!");
+				//					}
+				//				});
+				//			});
+				//返回按钮
+			mui.back = function(event) {
+				if (!mui.os.ios) {
+					if (confirm('确认退出？')) {
+						plus.runtime.quit();
+					}
+				}
+				return false;
+			};
+			//退出按钮
+			//			document.getElementById('exit').addEventListener('tap', function() {
+			//				if (mui.os.ios) {
+			//					window.localStorage.autoLogin = "";
+			//					plus.webview.close("main.html");
+			//					return;
+			//				}
+			//				var btnArray = [{
+			//					title: "注销当前账号"
+			//				}, {
+			//					title: "直接关闭应用"
+			//				}];
+			//				plus.nativeUI.actionSheet({
+			//					cancel: "取消",
+			//					buttons: btnArray
+			//				}, function(event) {
+			//					var index = event.index;
+			//					switch (index) {
+			//						case 1:
+			//							window.localStorage.autoLogin = "";
+			//							plus.webview.close("main.html");
+			//							break;
+			//						case 2:
+			//							plus.runtime.quit();
+			//							break;
+			//					}
+			//				});
+			//			});
+			//获取大类列表
+			//			function getBigMatterList() {
+			//				mui.ajax({
+			//					type: "post",
+			//					url: GP.ServiceUrl + "/Service/GetBigMatterList.ashx",
+			//					data: {},
+			//					dataType: "json",
+			//					async: true,
+			//					success: function(data) {
+			//						var table = document.getElementById("BigMatterList");
+			//						table.innerHTML = "";
+			//						if (data.length > 0) {
+			//							for (var i = 0; i < data.length; i++) {
+			//								var li = document.createElement('li');
+			//								li.id = data[i].GP_Matter_bigId;
+			//								li.className = 'mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4';
+			//								li.innerHTML = '<a href="javascript:OpenSmallMatterList(\'' + data[i].GP_Matter_bigId + '\',\'' + data[i].GP_name + '\');" >\
+			//								<img class="img-icon" src="images/img' + i + '.net.ico">\
+			//		                    	<div class="font-color img-icon-title">' + data[i].GP_name + '</div></a>';
+			//								table.appendChild(li);
+			//							}
+			//						}
+			//					},
+			//					error: function(e) {
+			//						mui.toast("大类获取失败！");
+			//					}
+			//				});
+			//			}
+			//			//获取hot5事项
+			//			function getHot5ProjectList() {
+			//				mui.ajax({
+			//					type: "post",
+			//					url: GP.ServiceUrl + "/Service/GetHot5ProjectList.ashx",
+			//					data: {},
+			//					dataType: "json",
+			//					async: true,
+			//					success: function(data) {
+			//						var table = document.getElementById("Hot5ProjectList");
+			//						table.innerHTML = "";
+			//						if (data.length > 0) {
+			//							for (var i = 0; i < data.length; i++) {
+			//								var li = document.createElement('div');
+			//								//								alert(data[i].GP_Time);
+			//								li.id = data[i].GP_ProjectId;
+			//								//var icon = data[i].IsMy == "1" ? '<a id="FocusBtn_' + data[i].GP_ProjectId + '"  href="javascript:FocusProject(\'' + data[i].GP_ProjectId + '\')" class="mui-btn mui-btn-red custom-NoFocus">关注</a>' : '<a class="mui-btn mui-btn-red custom-HasFocus">已关注</a>';
+			//								var icon = data[i].IsMy == "0" ? 'mui-icon-star-filled' : 'mui-icon-star';
+			//								li.className = 'mui-table-view-cell mui-media';
+			//								li.innerHTML =
+			//									'<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '"oinfo="' + data[i].IsMy + '" href="javascript:;">\
+			//										<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="./images/top.net.ico">\
+			//										<div class="mui-media-body mui-ellipsis" style="font-size:15px">\
+			//										 	' + data[i].GP_name + '\
+			//											<p style="margin-right: 30px;font-size:12px;" class="mui-ellipsis">关注度:' + data[i].GP_hot + '</p>\
+			//											<p style="margin-right: 30px;font-size:12px;" class="mui-ellipsis">截止时间:' + data[i].GP_Time + '</p>\
+			//										</div>\
+			//									</a>\
+			//									<button id="' + data[i].GP_ProjectId + '" onclick="FocusProject(this)" type="button" style="font-size:20px; color: #0086C8; border: 0px;margin-top:6px" class="mui-btn mui-icon ' + icon + '"></button>'
+			//								table.appendChild(li);
+			//							}
+			//						}
+			//					},
+			//					error: function(e) {
+			//						mui.toast("hot5事项获取失败！");
+			//					}
+			//				});
+			//			}
+			//			//获取大神列表
+			//			function GetManito() {
+			//				mui.ajax({
+			//					type: "post",
+			//					url: GP.ServiceUrl + "/Service/GetManito.ashx",
+			//					data: {},
+			//					dataType: "json",
+			//					async: true,
+			//					success: function(data) {
+			//						var table = document.getElementById("ManitoList");
+			//						table.innerHTML = "";
+			//						if (data.length > 0) {
+			//							for (var i = 0; i < data.length; i++) {
+			//								var li = document.createElement('li');
+			//								li.className = 'mui-table-view-cell mui-media';
+			//								li.innerHTML =
+			//									'<a id="' + data[i].GP_ManitoId + '" oname="' + data[i].GP_name + '" ocontent="' + i + '" href="javascript:;">\
+			//								            <img class="mui-media-object mui-pull-left" src="./images/user-photo.png" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;">\
+			//								            <div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">\
+			//								                ' + data[i].GP_name + '\
+			//								                <p style="width: 50%;margin-top:5px;white-space: nowrap;text-overflow:ellipsis;"><span class="mui-ellipsis mui-label">' + data[i].GP_SubName + '</span></p>\
+			//								            </div>\
+			//								        </a>\
+			//								    <button id="' + data[i].GP_ManitoId + '" class="mui-btn mui-good-btn mui-text-primaryColor" onclick="good(this)" type="button" style="font-size:14px; border: 0px;">\
+			//								    <img  class="mui-img-good" src="images/good.png" /><span>' + data[i].GP_LikeNumber + '</span>\</button>'
+			//								table.appendChild(li);
+			//							}
+			//						}
+			//					},
+			//					error: function(e) {
+			//						mui.toast("大神列表获取失败！");
+			//					}
+			//				});
+			//			}
+			//			//获取统计预测列表
+			//			function GetStatistical() {
+			//				mui.ajax({
+			//					type: "post",
+			//					url: GP.ServiceUrl + "/Service/GetStatistical.ashx",
+			//					data: {},
+			//					dataType: "json",
+			//					async: true,
+			//					success: function(data) {
+			//						var table = document.getElementById("StatisticalList");
+			//						table.innerHTML = "";
+			//						if (data.length > 0) {
+			//							for (var i = 0; i < data.length; i++) {
+			//								var li = document.createElement('div');
+			//								li.className = 'mui-panel-cell-item';
+			//								li.innerHTML =
+			//									'<a id="' + data[i].GP_StatisticalId + '" oname="' + data[i].GP_name + '" ocontent="' + data[i].GP_ContentHTML + '" href="javascript:;">\
+			//								            <img src="images/img-eg' + i + '.jpg">\
+			//								            <p class="mui-panel-cell-title">\
+			//								                ' + data[i].GP_name + '\
+			//								            </p>\
+			//								        </a>'
+			//								table.appendChild(li);
+			//							}
+			//						}
+			//					},
+			//					error: function(e) {
+			//						mui.toast("统计预测列表获取失败！");
+			//					}
+			//				});
+			//			}
+			//			//关注
+			//			function FocusProject(obj) {
+			//				mui.ajax({
+			//					type: "post",
+			//					url: GP.ServiceUrl + "/Service/FocusProject.ashx",
+			//					data: {
+			//						"Id": obj.id
+			//					},
+			//					dataType: "text",
+			//					async: true,
+			//					success: function(data) {
+			//						if (data == "addSuccess") {
+			//							obj.className = obj.className.replace("mui-icon-star", "mui-icon-star-filled");
+			//						} else if (data == "cancelSuccess") {
+			//							//mui.toast("取消关注成功");
+			//							obj.className = obj.className.replace("mui-icon-star-filled", "mui-icon-star");
+			//						} else {
+			//							mui.toast(data);
+			//						}
+			//					},
+			//					error: function(e) {
+			//						mui.toast("事项关注/取消关注失败，请重试！");
+			//					}
+			//				});
+			//			}
+			//			//打开小类页面
+			//			function OpenSmallMatterList(id, name) {
+			//				mui.openWindow({
+			//					url: "SmallMatterList.html?id=" + id,
+			//					id: "SmallMatterList.html",
+			//					show: {
+			//						aniShow: 'pop-in', //参考官方的效果
+			//					}
+			//					//		            ,
+			//					//		            extras:{
+			//					//		            	Name:encodeURI(name),
+			//					//		            	Id:id
+			//					//		            }
+			//				})
+			//			}
+			//			//点赞
+			//			function good(obj) {
+			//				var _img = $(obj).find("img");
+			//				var _num = $(obj).find("span").text();
+			//				if (_img.attr("src") == "images/good.png") {
+			//					_img.attr("src", "images/good-filled.png");
+			//					obj.className = obj.className.replace('mui-text-primaryColor', 'mui-text-goodColor');
+			//					_num++;
+			//				} else if (_img.attr("src") == "images/good-filled.png") {
+			//					_img.attr("src", "images/good.png");
+			//					obj.className = obj.className.replace('mui-text-goodColor', 'mui-text-primaryColor');
+			//					_num--;
+			//				} else {
+			//					mui.toast("程序异常！");
+			//				}
+			//				$(obj).find("span").text(_num);
+			//				mui.ajax({
+			//					type: "post",
+			//					url: GP.ServiceUrl + "/Service/FocusManito.ashx",
+			//					data: {
+			//						"GP_ManitoId": obj.id
+			//					},
+			//					dataType: "text",
+			//					async: true,
+			//					success: function(data) {
+			//						//						mui.toast("cc");
+			//					},
+			//					error: function(e) {
+			//						//						for(var i in e){
+			//						//							alert(e[i]);
+			//						//						}
+			//						mui.toast("点赞失败，请重试！");
+			//					}
+			//				});
+			//			}
+			//			mui('#Hot5ProjectList').on('tap', 'a', function() {
+			//				var _contentData = new Object();
+			//				//				console.log(1 + this.outerHTML);
+			//				_contentData.id = this.getAttribute('oid');
+			//				_contentData.name = this.getAttribute('oname');
+			//				_contentData.info = $(this).next().hasClass("mui-icon-star");
+			//				mui.openWindow({
+			//					id: "projectDetail_" + this.getAttribute('oid'),
+			//					url: "ProjectDetail.html?id=" + this.getAttribute('oid') + "&info=" + this.getAttribute('oinfo'),
+			//					show: {
+			//						aniShow: 'pop-in' //参考官方的效果
+			//					},
+			//					createNew: true,
+			//					extras: {
+			//						contentData: _contentData
+			//					},
+			//					waiting: {
+			//						autoShow: false,
+			//					}
+			//				});
+			//			});
+			//			mui('#ManitoList').on('tap', 'a', function() {
+			//				var _contentData = new Object();
+			//				_contentData.id = this.getAttribute('id');
+			//				_contentData.name = this.getAttribute('oname');
+			//				_contentData.index = this.getAttribute('ocontent');
+			//				mui.openWindow({
+			//					id: "ManitoDetail_" + this.getAttribute('id'),
+			//					url: "ManitoDetail.html",
+			//					show: {
+			//						aniShow: 'pop-in' //参考官方的效果
+			//					},
+			//					extras: {
+			//						contentData: _contentData
+			//					},
+			//					waiting: {
+			//						autoShow: false
+			//					}
+			//				});
+			//			});
+			//			mui('#StatisticalList').on('tap', 'a', function() {
+			//				var _contentData = new Object();
+			//				console.log(this.outerHTML);
+			//				_contentData.id = this.getAttribute('id');
+			//				_contentData.name = this.getAttribute('oname');
+			//				_contentData.content = this.getAttribute('ocontent');
+			//				mui.openWindow({
+			//					id: "StatisticalDetail_" + this.getAttribute('id'),
+			//					url: "StatisticalDetail.html",
+			//					show: {
+			//						aniShow: 'pop-in' //参考官方的效果
+			//					},
+			//					extras: {
+			//						contentData: _contentData
+			//					},
+			//					waiting: {
+			//						autoShow: false
+			//					}
+			//				});
+			//			});
+			var contentWebview = null;
+			document.querySelector('header').addEventListener('doubletap', function() {
+				if (contentWebview == null) {
+					contentWebview = plus.webview.currentWebview().children()[0];
+				}
+				contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+			});
+		</script>
+	</body>
+
+</html>

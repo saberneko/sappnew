@@ -1,0 +1,240 @@
+{
+  "login.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/user-photo.png",
+      "js/config.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "main.html"
+    ]
+  },
+  "main.html": {
+    "resources": [
+      "js/app.js",
+      "images/yuantiao.jpg",
+      "images/img1.png",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/user-photo.png",
+      "js/config.js",
+      "images/qq.png",
+      "images/img-eg0.jpg",
+      "images/good.png",
+      "js/jquery-1.11.3.min.js",
+      "images/img-eg1.jpg",
+      "images/img3.net.ico",
+      "images/img4.net.ico",
+      "images/img-eg2.jpg",
+      "images/top.net.ico",
+      "images/img5.net.ico",
+      "images/img0.net.ico",
+      "images/img2.net.ico",
+      "css/adding.css",
+      "images/img1.net.ico",
+      "images/img-eg3.jpg",
+      "images/good-filled.png"
+    ],
+    "refer": [
+      "My/MyProjectList.html",
+      "SmallMatterList.html",
+      "My/NewApplication.html",
+      "My/MyApplicationList.html",
+      "ManitoDetail.html",
+      "ProjectDetail.html",
+      "My/SeekScore.html",
+      "My/MyRank.html",
+      "My/aboutus.html",
+      "My/MyProfile.html"
+    ]
+  },
+  "My/MyProjectList.html": {
+    "resources": [
+      "My/MyProjectList_Sub.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js",
+      "My/MyProjectList_Sub1.html"
+    ],
+    "refer": [
+      "My/MyProjectList_Sub.html",
+      "My/MyProjectList_Sub1.html",
+      "My/CreateApplication.html"
+    ]
+  },
+  "SmallMatterList.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "SmallMatterList_Sub.html",
+      "css/mui.min.css",
+      "js/config.js"
+    ],
+    "refer": [
+      "SmallMatterList_Sub.html"
+    ]
+  },
+  "ProjectList.html": {
+    "resources": [
+      "ProjectList_Sub.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js"
+    ],
+    "refer": [
+      "ProjectList_Sub.html"
+    ]
+  },
+  "SmallMatterList_Sub.html": {
+    "refer": [
+      "ProjectList.html"
+    ],
+    "resources": []
+  },
+  "My/NewApplication.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js"
+    ],
+    "refer": []
+  },
+  "My/MyApplicationList.html": {
+    "resources": [
+      "js/mui.min.js",
+      "My/MyApplicationList_Sub.html",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js"
+    ],
+    "refer": [
+      "My/MyApplicationList_Sub.html",
+      "My/NewApplication.html"
+    ]
+  },
+  "My/MyApplicationList_Sub.html": {
+    "resources": [
+      "images/shuijiao.jpg"
+    ],
+    "refer": []
+  },
+  "ProjectList_Sub.html": {
+    "resources": [
+      "images/yuantiao.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/config.js",
+      "images/qq.png",
+      "fonts/mui.ttf",
+      "images/top.net.ico"
+    ],
+    "refer": [
+      "ProjectDetail.html",
+      "ProjectDetailSec.html"
+    ]
+  },
+  "My/MyProjectList_Sub.html": {
+    "resources": [
+      "images/shuijiao.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/config.js",
+      "fonts/mui.ttf",
+      "/images/qq.png",
+      "images/qq.png",
+      "images/top.net.ico",
+      "css/add.css"
+    ],
+    "refer": [
+      "ProjectDetail.html"
+    ]
+  },
+  "ProjectDetail.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js",
+      "js/app.js"
+    ],
+    "refer": [
+      "main.html"
+    ]
+  },
+  "ManitoDetail.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js"
+    ]
+  },
+  "ProjectDetailSec.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js"
+    ]
+  },
+  "My/MyProjectList_Sub1.html": {
+    "resources": [
+      "images/qq.png"
+    ]
+  },
+  "My/SeekScore.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js"
+    ]
+  },
+  "My/CreateApplication.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js",
+      "css/mui.picker.min.css",
+      "js/jquery-2.1.4.min.js"
+    ]
+  },
+  "My/MyRank.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/config.js",
+      "css/mui.poppicker.css",
+      "js/jquery-2.1.4.min.js",
+      "css/bootstrap.min.css"
+    ]
+  },
+  "My/aboutus.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "My/MyProfile.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/user-photo.png",
+      "js/config.js",
+      "js/mui.view.js"
+    ]
+  }
+}

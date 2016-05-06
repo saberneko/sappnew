@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+		<style>
+			.content-type{
+				overflow-x: hidden;
+				background-color: #ffffff;
+			}
+			.content-text{
+				padding: 40px 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title"></h1>
+		</header>
+		<div id="content" class="mui-content content-type content-text">
+
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+		<script>
+			
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					Init();
+				});
+			} else {
+				mui.ready(function() {
+					Init();
+				});
+			}
+
+			function Init() {
+				var content = plus.webview.currentWebview().contentData;
+//				for (var i in content) {
+//					console.log(content[i])
+//				}
+				document.getElementById("title").innerHTML = content.name;
+//				document.getElementById("content").innerHTML = decodeURIComponent(content.content.replace(/src%3D%22%2Fueditor/g, "src%3D%22" + encodeURIComponent(GP.ServiceUrl) + "%2Fueditor"));
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/GetManito.ashx",
+					data:{},
+					dataType: "json",
+					async: true,
+					success: function(data){
+						var contentText = data[content.index].GP_ContentHTML;
+						document.getElementById("content").innerHTML = decodeURIComponent(contentText.replace(/src%3D%22%2Fueditor/g, "src%3D%22" + encodeURIComponent(GP.ServiceUrl) + "%2Fueditor"));
+						
+					},
+					error: function(e){
+						alert(e.responseText);
+					}
+				});
+//				data[i].GP_ContentHTML
+			}
+		</script>
+	</body>
+
+</html>

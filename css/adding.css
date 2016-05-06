@@ -1,0 +1,92 @@
+			.mui-table-view-cell {
+				background-color: #ffffff;
+			}
+			
+			.img-icon-title {
+				margin-top: 5px;
+				font-size: 14px;
+				color: rgb(150, 150, 150);
+			}
+			
+			.img-icon {
+				width: 32px;
+				height: 32px;
+			}
+			
+			.mui-text-primaryColor {
+				color: #797979;
+			}
+			
+			.mui-text-goodColor {
+				color: #eb4f38;
+			}
+			
+			.mui-label {
+				position: relative;
+				display: inline-block;
+				padding: 0px 3px;
+				margin-right: 8px;
+				color: #0086C8;
+				font-size: 12px;
+				border: 1px solid #0086C8;
+				border-radius: 3px;
+			}
+			
+			.mui-img-good {
+				width: 14px;
+				height: 14px;
+				margin-right: 5px;
+				margin-bottom: 3px;
+				vertical-align: middle;
+			}
+			
+			.mui-panel-view {
+				position: relative;
+				z-index: 1;
+				overflow: hidden;
+				width: 100%;
+			}
+			/*.mui-panel-view .mui-panel-view-cell{
+	font-size: 0;
+	position: relative;
+	white-space: nowrap;
+}*/
+			
+			.mui-panel-view .mui-panel-cell-item {
+				position: relative;
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+				vertical-align: top;
+				margin-bottom: 13px;
+				white-space: normal;
+			}
+			
+			.mui-panel-view .mui-panel-cell-item a {
+				line-height: 0;
+				position: relative;
+				display: block;
+			}
+			
+			.mui-panel-view .mui-panel-cell-item img {
+				width: 100%;
+			}
+			
+			.mui-panel-cell-title {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 30px;
+				margin: 0;
+				line-height: 30px;
+				font-size: 16px;
+				text-align: left;
+				text-indent: 13px;
+				font-weight: 650;
+				color: #FFFFFF;
+				background-image: -webkit-linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3) 98%, #FFFFFF 100%);
+				background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.3) 98%, #FFFFFF 100%);
+				background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.3) 98%, #FFFFFF 100%);
+				background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3) 98%, #FFFFFF 100%);
+			}

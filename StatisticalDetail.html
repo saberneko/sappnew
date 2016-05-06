@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/config.js"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title"></h1>
+		</header>
+		<div id="content" class="mui-content">
+
+		</div>
+		<script>
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					init();
+				});
+			} else {
+				mui.ready(function() {
+					init();
+				});
+			}
+			function init() {
+				var content = plus.webview.currentWebview().contentData;
+				for (var i in content) {
+					console.log(content[i])
+				}
+				document.getElementById("title").innerHTML = content.name;
+				document.getElementById("content").innerHTML= decodeURIComponent(content.content.replace(/src%3D%22%2Fueditor/g,"src%3D%22" + encodeURIComponent(GP.ServiceUrl) + "%2Fueditor"));
+//				alert(document.getElementById("content").innerHTML);
+			}
+		</script>
+	</body>
+
+</html>

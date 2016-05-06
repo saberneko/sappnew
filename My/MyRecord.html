@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+
+</head>
+
+<style type="text/css">
+.mui-icon-left-nav{
+	color:#000000;
+}
+
+.mui-scroll-wrapper {
+	position: relative;
+	z-index: 2;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%
+}
+
+.mui-scroll {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0)
+}
+
+</style>
+
+
+<body>
+	<div class="mui-content">		
+		<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">点滴记录</h1>	
+			<button id='setting' onclick="NewApplication();" class=" mui-pull-right mui-btn-link" style="font-weight: 2000;color: #000000;">＋</button>
+		</header>
+
+		<div style="background-color: #efeff4;position:fixed;top: 44px;padding: 10px; z-index: 999;">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1">
+					我的关注
+				</a>
+				<a class="mui-control-item" href="#item2">
+					成果记录
+				</a>
+			</div>
+		</div>	
+				
+			
+				
+		<div style="margin-top:105px">
+			<div id="item1" class="mui-control-content mui-scroll-wrapper mui-active">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="list" class="mui-table-view">
+					<!--<div class="mui-table-view-cell mui-media">
+						<a oid="" oname="" href="../ProjectDetail.html">
+							<img class="mui-media-object mui-pull-left" src="../images/top.net.ico" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;">
+							<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">
+								2016年校希望杯电子设计竞赛
+								<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">关注度:100</p>
+								<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">截止时间:2016-05-05</p>
+							</div>
+						</a>
+						<button id="" type="button" style="font-size:20px; color: #007AFF; border: 0px;margin-top:10px" class="mui-btn mui-icon mui-icon-star-filled"></button>
+					</div>-->
+				</ul>			
+		</div>
+		</div>
+				
+				
+				
+				<div id="item1" class="mui-control-content mui-active">
+					<ul class="mui-table-view " id="MyFocusHot5ProjectList">
+						<!--<div class="mui-table-view-cell mui-media">
+							<a oid="" oname="" href="../ProjectDetail.html">
+								<img class="mui-media-object mui-pull-left" src="../images/top.net.ico" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;">
+									<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">
+										2016年校希望杯电子设计竞赛
+									<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">关注度:100</p>
+									<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">截止时间:2016-05-05</p>
+									</div>
+								</a>
+								<button id="" type="button" style="font-size:20px; color: #007AFF; border: 0px;margin-top:10px" class="mui-btn mui-icon mui-icon-star-filled"><tton>
+							</div>-->
+					<!--</ul>	-->	
+					
+			
+				<!--	<ul class="mui-table-view " id="MyFocus">-->
+						<!--<div class="mui-table-view-cell mui-media">
+							<a oid="" oname="" href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="../images/top.net.ico" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;">
+									<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">
+										2016年大学生数学建模竞赛
+									<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">关注度:100</p>
+									<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">截止时间:2016-05-05</p>
+									</div>
+								</a>
+								<button id="" type="button" style="font-size:20px; color: #007AFF; border: 0px;margin-top:10px" class="mui-btn mui-icon mui-icon-star-filled"><tton>
+							</div>-->
+					<!--</ul>-->
+			<!--	</div>	-->
+				
+				<div id="item2" class="mui-control-content">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="../images/shuijiao.jpg">
+								<div class="mui-media-body" style="margin-top: 10px;">
+								 电子设计竞赛	
+								</div>
+								<button type="button" class="mui-btn mui-btn-warning mui-btn-outlined">
+									未审核
+								</button>	
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="../images/muwu.jpg">
+								<div class="mui-media-body" style="margin-top: 10px;">
+								物理竞赛
+								</div>
+								<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined">
+									未通过
+								</button>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="../images/yuantiao.jpg">
+								<div class="mui-media-body" style="margin-top: 10px;">
+									数学竞赛									
+								</div>
+								<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined"  style="margin-right: 5px;">
+									通过
+								</button>
+							</a>
+						</li>
+
+					</ul>
+				</div>
+					
+
+			
+		</div>
+</body>
+
+<script src="../js/mui.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/config.js"></script>
+
+<script type="text/javascript">
+	
+
+
+	var LastId = '2016-01-01';
+	var FirstId = '2016-01-01';
+	
+	mui.init({
+		pullRefresh:{
+			container: "#item1",
+			down:{
+				callback: pulldownRefresh
+			},
+			up:{
+				contentrefresh:'正在加载...',
+				callback:pullupRefresh
+			}
+		}
+	});
+	
+	//上拉加载
+	function pullupRefresh(){
+		getMoreRequireMent();
+	}
+	
+	//下拉刷新
+	function pulldownRefresh(){
+		getNewRequireMent();
+	}
+	
+	
+	
+	//下拉刷新实现
+	function getNewRequireMent(){
+		mui.ajax({
+			type:"post",
+			url:GP.ServiceUrl + "/Service/GetMyProjectList.ashx",
+			data:{
+				"CreatedOn": FirstId,
+				"_flag":"re"	
+			},
+			dataType:"json",
+			async: true,
+			success: function(data){
+				if(data.length>0){
+					var table = document.getElementById("list");
+					for(var i=0;i<data.length;i++){
+						var div = document.createElement('div');
+						div.id = data[i].GP_ProjectId;
+						div.className = 'mui-table-view-cell mui-media';
+						div.innerHTML=
+							'<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '" href="javascript:;">\
+								<img class="mui-media-object mui-pull-left"  style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/qq.png">\
+								 <div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">\
+										'+ data[i].GP_name +'\
+									 <p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">关注度:'+ data[i].GP_hot +'</p>\
+									  <p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">截止时间:'+ data[i].GP_Time +'</p>\
+								</div>\
+							</a>\
+							<button oid="' + data[i].GP_ProjectId + '" onclick="FocusProject(this)" type="button" style="font-size:20px; color: #007AFF; border: 0px;margin-top:10px"  class="mui-btn mui-icon mui-icon-star-filled"></button>'
+
+						table.insertBefore(div, table.firstChild);
+					}
+				}
+				if(data.length > 0){
+					FirstId = data[data.length - 1].CreateOn;
+				}
+				mui('#item1').pullRefresh().endPulldownToRefresh();
+			},
+			error: function(e){
+				mui.toast("刷新数据失败！");
+				mui('#item1').pullRefresh().endPulldownToRefresh();
+			}	
+		});
+	}
+//	
+	//上拉加载业务的实现
+	function getMoreRequireMent(){
+		mui.ajax({
+			url: GP.ServiceUrl + "/Service/GetMyProjectList.ashx",
+			type:"post",
+			data:{
+				"CreateOn":LastId,
+				"_flag":"more"
+			},
+			dataType: "json",
+			async:true,
+			success:function(data){
+				if(data == null){
+					mui('#item1').PullRefresh().endPullupToRefresh(true); //无数据
+				}
+				if(data.length >0){
+					mui('#item1').pullRefresh().endPulldownToRefresh(false);
+					var table = document.getElementById("list");
+					for(var i=0;i<data.length;i++){
+						
+						var div = document.createElement('div');
+						div.id = data[i].GP_ProjectId;
+						div.className = 'mui-table-view-cell mui-media';
+						div.innerHTML=
+							'<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '" href="javascript:;">\
+								<img class="mui-media-object mui-pull-left"  style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/qq.png">\
+								 <div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">\
+										'+ data[i].GP_name +'\
+									 <p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">关注度:'+ data[i].GP_hot +'</p>\
+									  <p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">截止时间:'+ data[i].GP_Time +'</p>\
+								</div>\
+							</a>\
+							<button oid="' + data[i].GP_ProjectId + '" onclick="FocusProject(this)" type="button" style="font-size:20px; color: #007AFF; border: 0px;margin-top:10px"  class="mui-btn mui-icon mui-icon-star-filled"></button>'
+
+					
+								table.appendChild(div);
+					}
+					mui('#item1').pullRefresh().endPulldownToRefresh();
+					LastId = data[data.length - 1].CreateOn;
+					if(FirstId == '2016-01-01'){
+						FirstId = data[0].CreatedOn
+					}	
+				}else{
+					mui('#item1').pullRefresh().endPullupToRefresh(true);//参数为true代表没有更多数据
+				}
+			},
+			error:function(e){
+				mui.toast("加载数据失败！");
+				mui('#item1').pullRefresh().endPulldownToRefresh();
+			}
+		});
+	}
+	
+	
+	if(mui.os.plus){
+		mui.plusReady(function(){
+			setTimeout(function(){
+				mui('#item1').pullRefresh().pullupLoading();
+			},1);
+		});		
+	}else{
+		mui.ready(function(){
+			mui('#item1').pullRefresh().pullupLoading();
+		});
+	}
+
+	function FocusProject(obj){
+		mui.ajax({
+			url: GP.ServiceUrl + "/Service/FocusProject.ashx",
+			type:"post",
+			data:{
+				"Id":obj.getAttribute("oid")
+			},
+			dataType:"text",
+			async:true,
+			success:function(data){
+				if(data == "addSuccess"){				
+				}else if(data == "cancelSuccess"){
+					mui.toast("取消关注成功");
+					document.getElementById("list").removeChild(document.getElementById(obj.getAttribute("oid")))
+				}else{
+					mui.toast(data);
+				}	
+			},
+			error:function(e){
+				mui.toast("取消关注失败，请重试！");
+			}
+		});
+	}
+	
+	mui('#list').on('tap','a',function(){
+		var _contentData = new Object();
+		console.log(this.outerHTML);
+		_contentData.id = this.getAttribute('oid');
+		_contentData.name = this.getAttribute('oname');
+		mui.openWindow({
+			id:"projectDetail_" + this.getAttribute('oid'),
+			url:"../ProjectDetail.html",
+			show:{
+				aniShow:'pop-in'
+			},
+			extras:{
+				contentData:_contentData
+			},
+			waiting:{
+				autoShow:false
+			}	
+		});
+	});
+	
+//	var requrl = "MyProjectList_Sub.html" + (getQueryString("id") == null ? "" : ("?id=" + getQueryString("id")));
+	var contentWebview = null;
+		function () {
+			if(contentWebview==null){
+				contentWebview = plus.webview.currentWebview().children()[0];
+			}
+			
+			contentWebview.evalJS("mui('#pullRefresh').pullRefresh().scrollTo(0,0,100)");
+		};
+	
+	
+//	var contentWebview = null;
+//	contentWebview.evalJS("mui('#item1').pullRefresh().scrollTo(0,0,100)");
+//	
+//	mui.plusReady(
+//		getMyFocus();
+//	);
+	
+	//获取关注事项
+//	function getMyFocus(){
+//		mui.ajax({
+//			type:"p"
+//		})
+//	}
+	
+	</script>
+
+
+</html>

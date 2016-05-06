@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>申请</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">新建申请</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded" style="margin: 5px;">
+				
+				<form class="mui-input-group">
+					
+					<div class="mui-input-row">
+						<label>标题</label>
+						<input type="text" id="Application_Name" class="mui-input-clear" placeholder="请填写申请主题">
+					</div>
+					<textarea  id="Application_Desc" rows="10" placeholder="请填写申请详情"></textarea>
+					<div class="mui-button-row">
+						<button type="button" class="mui-btn mui-btn-primary" onclick="NewApplication_Submit();">提交</button>&nbsp;&nbsp;
+						<button type="button" class="mui-btn mui-btn-danger" onclick="mui.back();">取消</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/config.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+			function NewApplication_Submit(){
+				var Application_Name=document.getElementById("Application_Name").value;
+				var Application_Desc=document.getElementById("Application_Desc").value;
+				if(Application_Name==""){
+					mui.alert("请填写申请主题");
+					return;
+				}
+				
+				mui.ajax({
+					url:GP.ServiceUrl+"/Service/NewApplication.ashx?r="+Date.now().toString(),
+					type:"GET",
+					data:{
+						"GP_name":Application_Name,
+						"GP_Desc":Application_Desc
+					},
+					success:function(dat){
+						mui.toast("申请提交成功!");
+						mui.back();
+					},
+					error:function(){
+						mui.toast("申请提交失败，请重新提交!");
+					}
+				});	
+			}
+		</script>
+	</body>
+
+</html>

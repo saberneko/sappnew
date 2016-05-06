@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Project</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/add.css" />
+	</head>
+
+	<body>
+		<div id="segmentedControl" class="mui-segmented-control" style="z-index: 999;">
+			<a class="mui-control-item mui-active" id="" href="#item1">
+						我的关注
+			</a>
+			<!--<a class="mui-control-item" id="My/MyProjectList2.html" href="NewOpenWindow(this.id);">-->
+			<a class="mui-control-item" id="" href="#item2">
+						成果记录
+			</a>
+		</div>
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #efeff4;position:;top: 45px;">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<div id="item1" class="mui-control-content mui-active">
+					<ul id="list" class="mui-table-view">
+					</ul>
+				</div>
+
+				<!--成果记录-->
+				<div id="item2" class="mui-control-content">
+					<ul id="listRecord" class="mui-table-view ">
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<script src="../js/jquery-1.11.3.min.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/config.js"></script>
+		<script>
+			//控制第一次加载完成前不响应上拉下拉事件
+			var LastId = '2016-01-01';
+			var FirstId = '2016-01-01';
+			var FirstTime = '2016-01-01';
+			var LastTime = '2016-01-01';
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+						contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+						contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				//if (flag != 0)				
+				getMoreRequireMent();
+				getMoreRequireMentFollow();
+			}
+
+			function getNewRequireMentFollow() {
+				//				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				//				mui('#pullrefresh').pullRefresh().disablePulldownToRefresh();
+				//				alert()
+				//				////////////////我的关注///////////////////	
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/GetMyProjectList.ashx",
+					data: {
+						"CreatedOn": FirstId,
+						"_flag": "re"
+					},
+					dataType: "json",
+					async: true,
+					success: function(data) {
+						if (data.length > 0) {
+							var state;
+							var table = document.getElementById("list");
+							for (var i = 0; i < data.length; i++) {
+								var div = document.createElement('div');
+								div.id = data[i].GP_ProjectId;
+								div.className = 'mui-table-view-cell mui-media';
+								div.innerHTML =
+									'<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '" href="javascript:;">\
+										<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/top.net.ico">\
+										<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">\
+										 	' + data[i].GP_name + '\
+											<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">关注度：' + data[i].GP_hot + '</p>\
+											<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">截止时间：' + data[i].GP_Time + '</p>\
+										</div>\
+									</a>\
+									<button oid="' + data[i].GP_ProjectId + '" onclick="CancelFocusProject(this)" type="button" style="font-size:20px; color: #007AFF; border: 0px;margin-top:10px" class="mui-btn mui-icon mui-icon-star-filled"></button>'
+								table.insertBefore(div, table.firstChild);
+							}
+						}
+						//						if (data.length > 0) {
+						//							FirstId = data[data.length - 1].CreatedOn;
+						//						} else {}
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					},
+					error: function(e) {
+						mui.toast("刷新数据失败！");
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}
+				});
+			}
+
+			function getMoreRequireMentFollow() {
+				///////////////////我的关注//////
+				//				if(a == 'focus'){
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/GetMyProjectList.ashx",
+					data: {
+						"CreatedOn": LastId,
+						"_flag": "more"
+					},
+					dataType: "json",
+					async: true,
+					success: function(data) {
+						//						console.log(data);
+						if (data == null) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+						if (data.length > 0) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+							var table = document.getElementById("list");
+							var html = "";
+							for (var i = 0; i < data.length; i++) {
+								//								var div = document.createElement('div');
+								//								div.id = data[i].GP_ProjectId;
+								//								div.className = 'mui-table-view-cell mui-media';
+								//								div.innerHTML =
+								//									'<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '" href="javascript:;">\
+								//										<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/top.net.ico">\
+								//										<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">\
+								//										 	' + data[i].GP_name + '\
+								//											<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">关注度：' + data[i].GP_hot + '</p>\
+								//											<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">截止时间：' + data[i].GP_Time + '</p>\
+								//										</div>\
+								//									</a>\
+								//									<button oid="' + data[i].GP_ProjectId + '" onclick="CancelFocusProject(this)" type="button" style="font-size:20px; color: #007AFF; border: 0px;margin-top:10px" class="mui-btn mui-icon mui-icon-star-filled"></button>'
+								//								table.appendChild(div);
+								html += '<div id="' + data[i].GP_ProjectId + '"class="mui-table-view-cell mui-media">'
+								html += '<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '">';
+								html += '<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/top.net.ico">';
+								html += '<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">';
+								html += data[i].GP_name;
+								html += '<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">关注度：' + data[i].GP_hot + '</p>';
+								html += '<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">截止时间：' + data[i].GP_Time + '</p>';
+								html += '</div>';
+								html += '</a>';
+								html += '<button oid="' + data[i].GP_ProjectId + '" onclick="CancelFocusProject(this)" type="button" style="font-size:20px; color: #007AFF; border: 0px;margin-top:10px" class="mui-btn mui-icon mui-icon-star-filled"></button>';
+								html += '</div>';
+							}
+							table.innerHTML = html;
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							//							LastId = data[data.length - 1].CreatedOn;
+							//							if (FirstId == '2016-01-01') {
+							//								FirstId = data[0].CreatedOn
+							//							}
+							//						} else {
+							//							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //参数为true代表没有更多数据了。
+							//						}
+						};
+					},
+					error: function(e) {
+						mui.toast("加载数据失败！");
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh(true);
+					}
+				});
+			}
+			////////////////////////成果记录//////////////////////////////////////////////		
+			///////////////注释上面一段两个function 释放下面这两个function就可以调成果记录////
+			function getNewRequireMent() {
+				//				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				//				mui('#pullrefresh').pullRefresh().disablePulldownToRefresh();
+				//				alert(FirstTime);
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/GetAchievement.ashx",
+					data: {
+						"CreatedOn": FirstTime,
+						"_flag": "re",
+						"GP_No": localStorage.empno,
+					},
+					dataType: "json",
+					async: true,
+					success: function(data) {
+						alert(data.length);
+						if (data.length > 0) {
+							var html;
+							var state;
+							var table = document.getElementById("listRecord");
+							for (var i = 0; i < data.length; i++) {
+								if (data[i].GP_Pass == 0) {
+									state = '<button type="button" class="mui-btn mui-btn-warning mui-btn-outlined ">未审核</button>'
+								}
+								if (data[i].GP_Pass == 1) {
+									state = '<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined "  style="margin-right: 5px;">通过</button>'
+								}
+								if (data[i].GP_Pass == 2) {
+									state = '<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined ">未通过</button>'
+								}
+								var div = document.createElement('div');
+								div.id = data[i].GP_ProjectId;
+								div.className = 'mui-table-view-cell mui-media';
+								div.innerHTML =
+									'<a oid="' + data[i].GP_AchievementId + '" oname="' + data[i].GP_name + '" href="javascript:;">\
+													<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/top.net.ico">\
+													<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">\
+													 	' + data[i].GP_name + '\
+														<p style="margin-right: 30px;font-size: 12px;">分数：' + data[i].GP_Score + '\
+														</p>\
+														<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">获奖时间：' + data[i].GP_AwardTime + '</p>\
+													</div>\
+												</a>\
+												' + state
+								table.insertBefore(div, table.firstChild);
+								//								html += '<a oid="' + data[i].GP_AchievementId + '" oname="' + data[i].GP_name + '" href="javascript:;">';
+								//								html += '<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/top.net.ico">';
+								//								html += '<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">' + data[i].GP_name;
+								//								html += '<p style="margin-right: 30px;font-size: 12px;">分数：' + data[i].GP_Score;
+								//								html += '</p>';
+								//								html += '<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">获奖时间：' + data[i].GP_AwardTime + '</p>';
+								//								html += '</div>';
+								//								html += '</a>';
+								//								html += state;							}
+							}
+							//						if (data.length > 0) {
+							//							FirstTime = data[data.length - 1].CreatedOn;
+							//							alert(FirstTime);
+							//						} else {
+							//							mui.toast("没有新数据了");
+							//						}
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						};
+					},
+					error: function(e) {
+						//						alert(e.responseText);
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}
+				});
+			}
+
+			function getMoreRequireMent() {
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/GetAchievement.ashx",
+					data: {
+						"CreatedOn": LastTime,
+						"_flag": "more",
+						"GP_No": localStorage.empno,
+					},
+					dataType: "json",
+					async: true,
+					success: function(data) {
+						//						alert("uuu");
+						if (data == null) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+						if (data.length > 0) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+							var html = "";
+							var state;
+							var table = document.getElementById("listRecord");
+							//							var div = document.createElement('div');
+							for (var i = 0; i < data.length; i++) {
+								if (data[i].GP_Pass == 0) {
+									state = '<button type="button" class="mui-btn mui-btn-warning mui-btn-outlined ">未审核</button>'
+								}
+								if (data[i].GP_Pass == 1) {
+									state = '<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined "  style="margin-right: 5px;">通过</button>'
+								}
+								if (data[i].GP_Pass == 2) {
+									state = '<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined ">未通过</button>'
+								}
+								//								console.log(state)											
+								//								div.id = data[i].GP_AchievementId;
+								//								div.className = 'mui-table-view-cell mui-media';
+								//								div.innerHTML =
+								//									'<a oid="' + data[i].GP_AchievementId + '" oname="' + data[i].GP_name + '" href="javascript:;">\
+								//																					<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/top.net.ico">\
+								//																					<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">\
+								//																					 	' + data[i].GP_name + '\
+								//																						<p style="margin-right: 30px;font-size: 12px;">分数：' + data[i].GP_Score + '\
+								//																						</p>\
+								//																						<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">获奖时间：' + data[i].GP_AwardTime + '</p>\
+								//																					</div>\
+								//																				</a>\
+								//																				' + state + ''
+								//								table.appendChild(div);
+								html += '<div class="mui-table-view-cell mui-media">';
+								html += '<a oid="' + data[i].GP_AchievementId + '" oname="' + data[i].GP_name + '" href="javascript:;">';
+								html += '<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="../images/top.net.ico">';
+								html += '<div class="mui-media-body mui-ellipsis" style="text-overflow: ellipsis;font-size: 15px;">' + data[i].GP_name;
+								html += '<p style="margin-right: 30px;font-size: 12px;">分数：' + data[i].GP_Score + '</p>';
+								html += '<p style="margin-right: 30px;font-size: 12px;" class="mui-ellipsis">获奖时间：' + data[i].GP_AwardTime + '</p>';
+								html += '</div>';
+								html += '</a>';
+								html += state;
+								html += '</div>';
+							}
+							table.innerHTML = html;
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							//							LastTime = data[data.length - 1].CreatedOn;
+							//							if (FirstTime == '2016-01-01') {
+							//								FirstTime = data[0].CreatedOn;
+							//							}
+						} else {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //参数为true代表没有更多数据了。
+						}
+					},
+					error: function(e) {
+						//						alert("more");
+						//									mui.toast("加载数据失败！");
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}
+				});
+			}
+			
+			
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 1);
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+
+			function CancelFocusProject(obj) {
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/FocusProject.ashx",
+					data: {
+						"Id": obj.getAttribute("oid")
+					},
+					dataType: "text",
+					async: true,
+					success: function(data) {
+						if (data == "addSuccess") {} else if (data == "cancelSuccess") {
+							mui.toast("取消关注成功");
+							document.getElementById("list").removeChild(document.getElementById(obj.getAttribute("oid")))
+						} else {
+							mui.toast(data);
+						}
+					},
+					error: function(e) {
+						mui.toast("事项关注/取消关注失败，请重试！");
+					}
+				});
+			}
+			mui('#list').on('tap', 'a', function() {
+				var _contentData = new Object();
+				console.log(this.outerHTML);
+				_contentData.id = this.getAttribute('oid');
+				_contentData.name = this.getAttribute('oname');
+				_contentData.info = $(this).next().hasClass("mui-icon-star");
+				mui.openWindow({
+					id: "projectDetail_" + this.getAttribute('oid'),
+					url: "../ProjectDetailSec.html",
+					show: {
+						aniShow: 'pop-in' //参考官方的效果
+					},
+					createNew: true,
+					extras: {
+						contentData: _contentData
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

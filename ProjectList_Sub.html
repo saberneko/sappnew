@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Project</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="list" class="mui-table-view">
+				</ul>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/config.js"></script>
+		<script>
+			console.log(0);
+			//控制第一次加载完成前不响应上拉下拉事件
+			var LastId = '2016-01-01';
+			var FirstId = '2016-01-01';
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				//if (flag != 0)
+				getNewRequireMent();
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				//if (flag != 0)
+				getMoreRequireMent();
+			}
+
+			function getNewRequireMent() {
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/GetProjectList.ashx",
+					data: {
+						"Id": getQueryString("id") == null ? '00000000-0000-0000-0000-000000000000' : getQueryString("id"),
+						"CreatedOn": FirstId,
+						"_flag": "re"
+					},
+					dataType: "json",
+					async: true,
+					success: function(data) {
+						if (data.length > 0) {
+							var table = document.getElementById("list");
+							for (var i = 0; i < data.length; i++) {
+								var li = document.createElement('div');
+								li.id = data[i].GP_ProjectId;
+								li.className = 'mui-table-view-cell mui-media';
+								var icon = data[i].IsMy == "0" ? 'mui-icon-star-filled' : 'mui-icon-star';
+								li.innerHTML =
+									'<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '" href="javascript:;">\
+										<img class="mui-media-object mui-pull-left" src="./images/qq.png">\
+										<div class="mui-media-body">\
+										 	' + data[i].GP_name + '\
+											<p style="margin-right: 30px;" class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>\
+										</div>\
+									</a>\
+									<button id="' + data[i].GP_ProjectId + '" onclick="FocusProject(this)" type="button" style="font-size:24px; color: #FFFF33; border: 0px;" class="mui-btn mui-icon ' + icon + '"></button>'
+								table.insertBefore(li, table.firstChild);
+							}
+						}
+						if (data.length > 0) {
+							FirstId = data[data.length - 1].CreatedOn;
+						}
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					},
+					error: function(e) {
+						mui.toast("刷新数据失败！");
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}
+				});
+			}
+
+			function getMoreRequireMent() {
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/GetProjectList.ashx",
+					data: {
+						"Id": getQueryString("id") == null ? '00000000-0000-0000-0000-000000000000' : getQueryString("id"),
+						"CreatedOn": LastId,
+						"_flag": "more"
+					},
+					dataType: "json",
+					async: true,
+					success: function(data) {
+						if (data == null) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+						if (data.length > 0) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+							var table = document.getElementById("list");
+							for (var i = 0; i < data.length; i++) {
+								//								var li = document.createElement('li');
+								//								li.id = data[i].GP_ProjectId;
+								//								li.className = 'mui-table-view-cell';
+								//								li.innerHTML = '<a class="mui-navigate-right" href="javascript:OpenPeojectList(\''+data[i].GP_ProjectId+'\');" >'+data[i].GP_name +'</a>';
+								//								
+								var li = document.createElement('div');
+								li.id = data[i].GP_ProjectId;
+								var icon = data[i].IsMy == "1" ? '<button type="button" id="FocusBtn_' + data[i].GP_ProjectId + '"   onclick="FocusProject(\'' + data[i].GP_ProjectId + '\');" class="mui-btn mui-btn-red custom-NoFocus">关注</button>' : '<a class="mui-btn mui-btn-red custom-HasFocus">已关注</a>';
+								li.className = 'mui-table-view-cell mui-media';
+								li.oid = data[i].GP_ProjectId;
+								li.oname = data[i].GP_name;
+								var icon = data[i].IsMy == "0" ? 'mui-icon-star-filled' : 'mui-icon-star';
+								li.innerHTML =
+									'<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '"oinfo="' + data[i].IsMy + '" href="javascript:;">\
+										<img class="mui-media-object mui-pull-left" style="width:30px;height: 32px;margin-top: 10px;margin-right: 15px;" src="./images/top.net.ico">\
+										<div class="mui-media-body mui-ellipsis" style="font-size:15px">\
+										 	' + data[i].GP_name + '\
+											<p style="margin-right: 30px;font-size:12px;" class="mui-ellipsis">关注度:'+ data[i].GP_hot + '</p>\
+											<p style="margin-right: 30px;font-size:12px;" class="mui-ellipsis">截止时间:' + data[i].GP_Time + '</p>\
+										</div>\
+									</a>\
+									<button id="' + data[i].GP_ProjectId + '" onclick="FocusProject(this)" type="button" style="font-size:20px; color: #0086C8; border: 0px;margin-top:6px" class="mui-btn mui-icon ' + icon + '"></button>'
+//									'<a oid="' + data[i].GP_ProjectId + '" oname="' + data[i].GP_name + '" href="javascript:;">\
+//										<img class="mui-media-object mui-pull-left" src="./images/qq.png">\
+//										<div class="mui-media-body">\
+//										 	' + data[i].GP_name + '\
+//											<p style="margin-right: 30px;" class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>\
+//										</div>\
+//									</a>\
+//									<button id="' + data[i].GP_ProjectId + '" onclick="FocusProject(this)" type="button" style="font-size:24px; color: #FFFF33; border: 0px;" class="mui-btn mui-icon ' + icon + '"></button>'
+								table.appendChild(li);
+							}
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							LastId = data[data.length - 1].CreatedOn;
+							if (FirstId == '2016-01-01') {
+								FirstId = data[0].CreatedOn
+							}
+						} else {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //参数为true代表没有更多数据了。
+						}
+					},
+					error: function(e) {
+						mui.toast("加载数据失败！")
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}
+				});
+			}
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 1);
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+
+			function FocusProject(obj) {
+				console.log(obj.id);
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/FocusProject.ashx",
+					data: {
+						"Id": obj.id
+					},
+					dataType: "text",
+					async: true,
+					success: function(data) {
+						if (data == "addSuccess") {
+							mui.toast("事项关注成功");
+							obj.className = obj.className.replace("mui-icon-star", "mui-icon-star-filled");
+						} else if (data == "cancelSuccess") {
+							mui.toast("取消关注成功");
+							obj.className = obj.className.replace("mui-icon-star-filled", "mui-icon-star");
+						} else {
+							mui.toast(data);
+						}
+					},
+					error: function(e) {
+						mui.toast("事项关注/取消关注失败，请重试！");
+					}
+				});
+			}
+			mui('#list').on('tap', 'a', function() {
+				var _contentData = new Object();
+				console.log(this.outerHTML);
+				_contentData.id = this.getAttribute('oid');
+				_contentData.name = this.getAttribute('oname');
+				mui.openWindow({
+					id: "projectDetailSec_" + this.getAttribute('oid'),
+					url: "ProjectDetailSec.html?id=" + _contentData.id,
+					show: {
+						aniShow: 'pop-in' //参考官方的效果
+					},
+					createNew: true,
+					extras: {
+						contentData: _contentData
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+		</script>
+
+	</body>
+
+</html>

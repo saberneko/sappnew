@@ -1,0 +1,24 @@
+.mui-btn-outlined {
+	background-color: transparent
+}
+
+
+.mui-btn-warning,
+.mui-btn-primary,
+.mui-btn-danger{
+	color: #fff;
+	border: 1px solid #ffffff;
+	background-color: #ffffff;
+}
+
+.mui-btn-warning.mui-active:enabled,
+.mui-btn-warning:enabled:active,
+.mui-btn-primary.mui-active:enabled,
+.mui-btn-primary:enabled:active,
+.mui-btn-danger.mui-active:enabled,
+.mui-btn-danger:enabled:active {
+	color: #fff;
+	border: 1px solid #ffffff;
+	background-color: #ffffff;
+}
+

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+		<style>
+			html,
+			body {
+				font-family: "微软雅黑";
+				min-height: 100%;
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" backId="main" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-back-color"></a>
+			<h1 id="title" class="mui-title">成绩查询</h1>
+		</header>
+		<div id="" class="mui-content">
+			<div class="mui-content-padded">
+				<p style="padding: 5px 20px;margin-bottom: 5px;">
+					<button id="menu-btn" type="button" class="mui-btn mui-btn-block" style="padding: 8px;font-size: 15px;">
+						请选择学期
+					</button>
+				</p>
+			</div>
+
+		</div>
+		<div id="menu-wrapper" class="menu-wrapper hidden">
+			<div id="menu" class="menu">
+				<ul class="mui-table-view mui-table-view-inverted">
+					<li class="mui-table-view-cell">
+						<a termNo="1" href="javascript:;">第一学期</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a termNo="2" href="javascript:;">第二学期</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a termNo="3" href="javascript:;">第三学期</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a termNo="4" href="javascript:;">第四学期</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a termNo="5" href="javascript:;">第五学期</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a termNo="6" href="javascript:;">第六学期</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="menu-backdrop" class="menu-backdrop"></div>
+		<div id="customers">
+			<!--<div class='stopin'>
+				<span class='ul-left'>大学英语</span>
+				<span class='mscores'>78</span>
+			</div>
+			<div class='stopin'>
+				<span class='ul-left'>大学英语</span>
+				<span class='mscores'>78</span>
+			</div>-->
+		</div>
+		<!--<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>-->
+		<script src="../js/config.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			var menuWrapper = document.getElementById("menu-wrapper");
+			var menu = document.getElementById("menu");
+			var menuWrapperClassList = menuWrapper.classList;
+			var backdrop = document.getElementById("menu-backdrop");
+			//			var info = document.getElementById("info");
+			backdrop.addEventListener('tap', toggleMenu);
+			document.getElementById("menu-btn").addEventListener('tap', toggleMenu);
+			//			document.getElementById("icon-menu").addEventListener('tap',toggleMenu)
+			//下沉菜单中的点击事件
+			mui('#menu').on('tap', 'a', function() {
+				toggleMenu();
+				mui.ajax({
+					type: "post",
+					url: GP.ServiceUrl + "/Service/SeekTermGrade.ashx",
+					data: {
+						"GP_No": localStorage.empno,
+						"GP_Term": this.getAttribute("termNo")
+					},
+					dataType: "json",
+					async: true,
+					success: function(data) {
+						var m = "";
+						for (var i = 0; i < data.length; i++) {
+							m += "<div class='stopin'>";
+							m += "<span class='ul-left'>" + data[i].GP_name + "</span>";
+							m += "<span class='mscores'>" + data[i].GP_SubjectScore + "</span>";
+							m += "</div>";
+						}
+						document.getElementById("customers").innerHTML = m;
+					},
+					error: function(e) {
+						alert(e.responseText);
+					}
+				})
+			});
+			var busying = false;
+
+			function toggleMenu() {
+				if (busying) {
+					return;
+				}
+				busying = true;
+				if (menuWrapperClassList.contains('mui-active')) {
+					document.body.classList.remove('menu-open');
+					menuWrapper.className = 'menu-wrapper fade-out-up animated';
+					menu.className = 'menu bounce-out-up animated';
+					setTimeout(function() {
+						backdrop.style.opacity = 0;
+						menuWrapper.classList.add('hidden');
+					}, 500);
+				} else {
+					document.body.classList.add('menu-open');
+					menuWrapper.className = 'menu-wrapper fade-in-down animated mui-active';
+					menu.className = 'menu bounce-in-down animated';
+					backdrop.style.opacity = 1;
+				}
+				setTimeout(function() {
+					busying = false;
+				}, 500);
+			}
+		</script>
+	</body>
+
+</html>
