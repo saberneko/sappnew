@@ -620,12 +620,9 @@
 					dataType: "text",
 					async: true,
 					success: function(data) {
-						//						mui.toast("cc");
+						mui.toast("点赞成功");
 					},
 					error: function(e) {
-						//						for(var i in e){
-						//							alert(e[i]);
-						//						}
 						mui.toast("点赞失败，请重试！");
 					}
 				});
@@ -692,7 +689,6 @@
 			});
 			mui('#MyProjectListA').on('tap','a',function(){
 				var _id = this.getAttribute('id');
-//				alert(_id);
 				mui.openWindow({
 					id: _id,
 					url: "My/MyProjectList.html",
