@@ -1,261 +1,253 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 	</head>
 	<link rel="stylesheet" href="../css/bootstrap.min.css" />
 	<link rel="stylesheet" href="../css/mui.min.css" />
-	<link rel="stylesheet" href="../css/mui.poppicker.css"/>
-    <!--<link href="../css/mui.listpicker.css" rel="stylesheet"/>-->
-	
-<style type="text/css">
+	<link rel="stylesheet" href="../css/mui.poppicker.css" />
+	<!--<link href="../css/mui.listpicker.css" rel="stylesheet"/>-->
 
-/*这里可以看着加到css文件里面去*/
-
-body{
-		background-color: #FFFFFF;
-	}
-	.layout{
-    margin-left: 28%;
-    height: 20%;
-    width: 160px;
-    padding-top: 10px;
-    padding-bottom: 8px;
-    text-align: center;
-	}	
-	.caret{
-		color: #000000;
-	}
-#sub
-{
-    color:#000000;
-    width: 165px;
-    position: absolute;
-    top: 45px;
-    display: none;
-    border: 1px solid #000000;
-    border-radius:4px ;
-    z-index: 999;
-    background-color: #ffffff;
-}
-
-#sub ul
-{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-#sub ul li
-{
-    padding: 0 5px;
-    line-height: 24px;
-}
-#sub ul li:hover
-{
-    color: #fff;
-    background-color:#000000;
-}
-.mui-segmented-control{
-	height: 30px;
-	/*width: 150%;*/
-	border-radius:0px ;
-	border-top: 1px solid #ffffff;
-	border-left: 1px solid #ffffff;
-	border-right: 1px solid #ffffff;
-	border-bottom: 1px solid #000000;
-}
-.mui-control-item{
-	width: 100px;
-}
-.ulterm{
-    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
-    transition: 100ms ease-out;
-}
-.literm{
-    transform-origin: center center -89.5px;
-    transform: translateZ(89.5px) rotateX(0deg);
-}
-table{
-	text-align: center;
-}
-
-
-	</style>
-	<body>
+	<style type="text/css">
+		/*这里可以看着加到css文件里面去*/
 		
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<div class="layout">
-	        <div class="input">
-	            	请选择排名类型<span class="caret"></span>
-	        </div>
-	        <div id="sub" class="">
-	            <ul>
-	                <li>成绩</li>
-	                <li>事项</li>
-	                <li>综测</li>
-	            </ul>
-	        </div>
-	    </div>       
-	</header>
+		body {
+			background-color: #FFFFFF;
+		}
+		
+		.layout {
+			margin-left: 28%;
+			height: 20%;
+			width: 160px;
+			padding-top: 10px;
+			padding-bottom: 8px;
+			text-align: center;
+		}
+		
+		.caret {
+			color: #000000;
+		}
+		
+		#sub {
+			color: #000000;
+			width: 165px;
+			position: absolute;
+			top: 45px;
+			display: none;
+			border: 1px solid #000000;
+			border-radius: 4px;
+			z-index: 999;
+			background-color: #ffffff;
+		}
+		
+		#sub ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		
+		#sub ul li {
+			padding: 0 5px;
+			line-height: 24px;
+		}
+		
+		#sub ul li:hover {
+			color: #fff;
+			background-color: #000000;
+		}
+		
+		.mui-segmented-control {
+			height: 30px;
+			/*width: 150%;*/
+			border-radius: 0px;
+			border-top: 1px solid #ffffff;
+			border-left: 1px solid #ffffff;
+			border-right: 1px solid #ffffff;
+			border-bottom: 1px solid #000000;
+		}
+		
+		.mui-control-item {
+			width: 100px;
+		}
+		
+		.ulterm {
+			transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+			transition: 100ms ease-out;
+		}
+		
+		.literm {
+			transform-origin: center center -89.5px;
+			transform: translateZ(89.5px) rotateX(0deg);
+		}
+		
+		table {
+			text-align: center;
+		}
+		a:hover{
+			text-decoration: none;
+		}
+	</style>
 
-<!--选择器-->
-	<div style="margin-top:45px" id="score-select" hidden="hidden">
-        <div id="segmentedControl" class="mui-segmented-control">
-			<a class="mui-control-item "  style="text-decoration: none;" onclick=" selectitem()">
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-back-color"></a>
+			<div class="layout">
+				<div class="input">
+					请选择排名类型<span class="caret"></span>
+				</div>
+				<div id="sub" class="">
+					<ul>
+						<li>成绩</li>
+						<li>事项</li>
+						<li>综测</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+		<!--选择器-->
+		<div style="margin-top:45px" id="score-select" hidden="hidden">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item " style="text-decoration: none;" onclick=" selectitem()">
 				学期排名
 			</a>
-			<a class="mui-control-item mui-active" style="text-decoration: none;">
+				<a class="mui-control-item mui-active" style="text-decoration: none;">
 				总排名
 			</a>
-		</div>	
-    </div>
+			</div>
+		</div>
 
-    
-   <!--学期选择器--> 
-<div class="mui-poppicker mui-active" id="selectitem" style="display:none">
-    <div class="mui-poppicker-header">
-        <button class="mui-btn mui-poppicker-btn-cancel" id="cancel" onclick="$('#selectitem').hide('2000')">取消</button>
-        <button class="mui-btn mui-btn-blue mui-poppicker-btn-ok" id="ok" onclick="$('#selectitem').hide('2000')">确定</button>
-        <div class="mui-poppicker-clear"></div>
-    </div>
-    <div class="mui-poppicker-body">
-        <div class="mui-picker" style="width: 100%;">
-            <div class="mui-picker-inner">
-                <div class="mui-pciker-rule mui-pciker-rule-ft"></div>
-                <ul class="mui-pciker-list" id="dropdownlist"
-                    style="transform: perspective(1000px) rotateY(0deg) rotateX(0deg); transition: 100ms ease-out;">
-                </ul>
-                <div class="mui-pciker-rule mui-pciker-rule-bg"></div>
-            </div>
-        </div>
-    </div>
-</div>
+		<!--学期选择器-->
+		<div class="mui-poppicker mui-active" id="selectitem" style="display:none">
+			<div class="mui-poppicker-header">
+				<button class="mui-btn mui-poppicker-btn-cancel" id="cancel" onclick="$('#selectitem').hide('2000')">取消</button>
+				<button class="mui-btn mui-btn-blue mui-poppicker-btn-ok" id="ok" onclick="$('#selectitem').hide('2000')">确定</button>
+				<div class="mui-poppicker-clear"></div>
+			</div>
+			<div class="mui-poppicker-body">
+				<div class="mui-picker" style="width: 100%;">
+					<div class="mui-picker-inner">
+						<div class="mui-pciker-rule mui-pciker-rule-ft"></div>
+						<ul class="mui-pciker-list" id="dropdownlist" style="transform: perspective(1000px) rotateY(0deg) rotateX(0deg); transition: 100ms ease-out;">
+						</ul>
+						<div class="mui-pciker-rule mui-pciker-rule-bg"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<!--综测-->
+		<table class='table' id="total" style="margin-top: 46px;">
 
-	<!--综测-->
-	<table class='table' id="total"  style="margin-top: 46px;">
-	
-	 </table>
+		</table>
 
-</body>
-	
-	<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>	
+	</body>
+
+	<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 	<script src="../js/config.js"></script>
 	<script type="text/javascript" src="../js/mui.min.js"></script>
 	<!--<script src="../js/mui.picker.js"></script>
 	<script src="../js/mui.poppicker.js"></script>
 	<script src="../js/mui.listpicker.js"></script>-->
-	
 	<script type="text/javascript">
-	var user;
-	mui.init({});
-	
-	mui.plusReady(function(){
-		user = window.localStorage.getItem("empno");
-	});
-	
-	
-
-	 $('.input').click(function () {
-        //缓存$('.input'),方便下面使用
-        var self = $(this);
-        //利用冒泡,将点击事件绑定在div上,不需要每个li都绑定click事件
-        self.next('#sub').show().click(function (e) {
-            self.html($(e.target).text() + '<span class="caret">');
-//          self.
-//          
-            if($(e.target).text()== '成绩'){
-               $('#score-select').show('slow');
-               }else{
-               $('#score-select').hide('slow');
-               }
-             if($(e.target).text()=='事项'){
-              	mui.toast("暂无结果");
-              }
-              if($(e.target).text()=='综测'){
-              	Total();
-              	$('#total').show('slow');
-              	 }else{
-              	 $('#total').hide('slow');	
-              	 }
-// 				event.stopPropagation();
-//                    $('#sub').hide();
-//                if(!($(e.target))){
-//                  $(this).hide()
-//                 }
-            $(this).hide();
-       
-   });
-  });
-    
-    
-    //选择学期
-     function selectitem() {
-//   	alert(1)
-//        $("#selectitem").animate({height:200},"slow");
-        $('#selectitem').show("slow");
-        $.ajax('/service/S_SelectTerm.aspx', {
-            data: {
-//              usernum: user
-            },
-            datatype: 'json',
-            type: 'get',
-            success: function (cc) {
-                var d = eval("(" + cc + ")") //这句话是将json语句对象化
-                var html = "";
-                for (var i = 0; i < d.Table.length; i++) {
-                    if (i < 5) {
-                        var b = -i * 20;
-                        html += "<li class='visible highlight literm' style='transform:rotateX(" + b + ")'>";
-                        html += "<a value='" + i + "' style='text-decoration:none;display:inline-block;' onclick=''>" + d.Table[i].S_TermYear + "学年</a><a style='display:inline-block;'>第" + d.Table[i].S_TermNum + "学期</a>";
-                        html += "</li>"
-                    }
-                    else {
-                        var b = -i * 20;
-                        html += "<li class='literm' style='transform:rotateX(" + b + ")'>";
-                        html += "<a value='" + i + "' style='text-decoration:none;display:inline-block;'>" + d.Table[i].S_TermYear + "学年</a><a style='display:inline-block;'>第" + d.Table[i].S_TermNum + "学期</a>";
-                        html += "</li>";
-                    }
-                }
-                document.getElementById("dropdownlist").innerHTML = html;
-               
-            },
-            error: function (m) { //获取ajax的错误信息
-                console.log(m.responseText);
-            }
-        });
-    }
-     
-     
-     
-     //综测
-     function Total(){   
-     	
-     	mui.ajax({		
-			url:GP.ServiceUrl + "/Service/GetComprehensiveRank.ashx",
-			type:"post",
-			data:{},
-			dataType:"json",
-			async: true,
-			success:function(data){
-               	var html = "";
-               	html +="<tr><td style='font'><b>学号</b></td><td><b>分数</b></td></tr>"
-                	for(var i=0;i<data.length;i++){
-	                	if(data[i].GP_No == user){
-	                		
-	                		html += "<tr style='color:red'><td>" + data[i].GP_No +"</td><td>"+ data[i].GP_Score +"</td></tr>";
-	                	}else{
-	                	html += "<tr><td>***</td><td>"+ data[i].GP_Score +"</td></tr>";
-	                	}		
+		var user;
+		mui.init({});
+		mui.plusReady(function() {
+			user = window.localStorage.getItem("empno");
+		});
+		$('.input').click(function() {
+			//缓存$('.input'),方便下面使用
+			var self = $(this);
+			//利用冒泡,将点击事件绑定在div上,不需要每个li都绑定click事件
+			self.next('#sub').show().click(function(e) {
+				self.html($(e.target).text() + '<span class="caret">');
+				//          self.
+				//          
+				if ($(e.target).text() == '成绩') {
+					$('#score-select').show('slow');
+				} else {
+					$('#score-select').hide('slow');
+				}
+				if ($(e.target).text() == '事项') {
+					mui.toast("暂无结果");
+				}
+				if ($(e.target).text() == '综测') {
+					Total();
+					$('#total').show('slow');
+				} else {
+					$('#total').hide('slow');
+				}
+				// 				event.stopPropagation();
+				//                    $('#sub').hide();
+				//                if(!($(e.target))){
+				//                  $(this).hide()
+				//                 }
+				$(this).hide();
+			});
+		});
+		//选择学期
+		function selectitem() {
+			//   	alert(1)
+			//        $("#selectitem").animate({height:200},"slow");
+			$('#selectitem').show("slow");
+			$.ajax('/service/S_SelectTerm.aspx', {
+				data: {
+					//              usernum: user
+				},
+				datatype: 'json',
+				type: 'get',
+				success: function(cc) {
+					var d = eval("(" + cc + ")") //这句话是将json语句对象化
+					var html = "";
+					for (var i = 0; i < d.Table.length; i++) {
+						if (i < 5) {
+							var b = -i * 20;
+							html += "<li class='visible highlight literm' style='transform:rotateX(" + b + ")'>";
+							html += "<a value='" + i + "' style='text-decoration:none;display:inline-block;' onclick=''>" + d.Table[i].S_TermYear + "学年</a><a style='display:inline-block;'>第" + d.Table[i].S_TermNum + "学期</a>";
+							html += "</li>"
+						} else {
+							var b = -i * 20;
+							html += "<li class='literm' style='transform:rotateX(" + b + ")'>";
+							html += "<a value='" + i + "' style='text-decoration:none;display:inline-block;'>" + d.Table[i].S_TermYear + "学年</a><a style='display:inline-block;'>第" + d.Table[i].S_TermNum + "学期</a>";
+							html += "</li>";
+						}
 					}
-                		document.getElementById("total").innerHTML=html;
-					},
-				    error: function (m) { //获取ajax的错误信息
-                		console.log(m.responseText);						
+					document.getElementById("dropdownlist").innerHTML = html;
+				},
+				error: function(m) { //获取ajax的错误信息
+					console.log(m.responseText);
+				}
+			});
+		}
+		//综测
+		function Total() {
+			mui.ajax({
+				url: GP.ServiceUrl + "/Service/GetComprehensiveRank.ashx",
+				type: "post",
+				data: {},
+				dataType: "json",
+				async: true,
+				success: function(data) {
+					var html = "";
+					html += "<tr><td style='font'><b>学号</b></td><td><b>分数</b></td></tr>"
+					for (var i = 0; i < data.length; i++) {
+						if (data[i].GP_No == user) {
+							html += "<tr style='color:red'><td>" + data[i].GP_No + "</td><td>" + data[i].GP_Score + "</td></tr>";
+						} else {
+							html += "<tr><td>***</td><td>" + data[i].GP_Score + "</td></tr>";
+						}
 					}
-				});	
-     }
+					document.getElementById("total").innerHTML = html;
+				},
+				error: function(m) { //获取ajax的错误信息
+					console.log(m.responseText);
+				}
+			});
+		}
 	</script>
+
 </html>

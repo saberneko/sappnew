@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -142,12 +141,12 @@
 
 				<ul class="mui-table-view" style="margin-top: 15px;">
 					<li class="mui-table-view-cell mui-table-view-cellExt">
-						<a class="mui-navigate-right" id="My/MyApplicationList.html" onclick="NewOpenWindow(this.id);">
+						<a class="mui-navigate-right" id="My/MyApplicationList.html" onclick="">
 							系统消息
 						</a>
 					</li>
 					<li class="mui-table-view-cell mui-table-view-cellExt">
-						<a class="mui-navigate-right" id="My/MyApplicationList.html" onclick="NewOpenWindow(this.id);">
+						<a class="mui-navigate-right" id="My/MyApplicationList.html" onclick="">
 							意见反馈
 						</a>
 					</li>
@@ -554,31 +553,15 @@
 				})
 				//推出按钮
 			document.getElementById('exit').addEventListener('tap', function() {
-				if (mui.os.ios) {
-					window.localStorage.autoLogin = "";
-					plus.webview.close("main.html");
-					return;
+				var curr = plus.webview.currentWebview();
+				var wvs = plus.webview.all();
+				for(var i = 0,len=wvs.length;i<len;i++){
+					if(wvs[i].getURL() == curr.getURL())
+					continue;
+					plus.webview.close(wvs[i]);
 				}
-				var btnArray = [{
-					title: "注销当前账号"
-				}, {
-					title: "直接关闭应用"
-				}];
-				plus.nativeUI.actionSheet({
-					cancel: "取消",
-					buttons: btnArray
-				}, function(event) {
-					var index = event.index;
-					switch (index) {
-						case 1:
-							window.localStorage.autoLogin = "";
-							plus.webview.close("main.html");
-							break;
-						case 2:
-							plus.runtime.quit();
-							break;
-					}
-				});
+				window.localStorage.autoLogin = "";
+				plus.webview.open('login.html');
 			});
 			//打开小类页面
 			//			function OpenSmallMatterList(id, name) {

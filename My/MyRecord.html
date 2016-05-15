@@ -111,7 +111,7 @@
 				
 				<div id="item2" class="mui-control-content">
 					<ul class="mui-table-view">
-						<li class="mui-table-view-cell mui-media">
+						<!--<li class="mui-table-view-cell mui-media">
 							<a href="javascript:;">
 								<img class="mui-media-object mui-pull-left" src="../images/shuijiao.jpg">
 								<div class="mui-media-body" style="margin-top: 10px;">
@@ -143,8 +143,7 @@
 									通过
 								</button>
 							</a>
-						</li>
-
+						</li>-->
 					</ul>
 				</div>
 					
@@ -344,22 +343,18 @@
 	});
 	
 //	var requrl = "MyProjectList_Sub.html" + (getQueryString("id") == null ? "" : ("?id=" + getQueryString("id")));
-	var contentWebview = null;
-		function () {
-			if(contentWebview==null){
-				contentWebview = plus.webview.currentWebview().children()[0];
-			}
-			
-			contentWebview.evalJS("mui('#pullRefresh').pullRefresh().scrollTo(0,0,100)");
-		};
+//	var contentWebview = null;
+//		function () {
+//			if(contentWebview==null){
+//				contentWebview = plus.webview.currentWebview().children()[0];
+//			}			
+//			contentWebview.evalJS("mui('#pullRefresh').pullRefresh().scrollTo(0,0,100)");
+//		};
 	
 	
 //	var contentWebview = null;
 //	contentWebview.evalJS("mui('#item1').pullRefresh().scrollTo(0,0,100)");
 //	
-//	mui.plusReady(
-//		getMyFocus();
-//	);
 	
 	//获取关注事项
 //	function getMyFocus(){

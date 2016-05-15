@@ -76,40 +76,10 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a id="back" backId="main" class="main mui-icon mui-icon-left-nav mui-pull-left" onclick="goBack(this)"></a>
+			<a id="back" backId="main" class="main mui-icon mui-icon-left-nav mui-pull-left mui-back-color" onclick="goBack(this)"></a>
 			<h1 id="title" class="mui-title"></h1>
 		</header>
 		<div id="projectDetail" class="mui-content content-text">
-			<!--<div class="top-content">
-				<img src="images/Compute.net.ico" />
-			</div>
-			<p class="mui-title title" id="projectTitle">大学生数学建模竞赛</p>
-			<p class="middle">
-				<span class="mui-subtitle subtitle">科研创新</span>
-				<span class="mui-subtitle subtitle">学科竞赛</span>
-			</p>
-			<p class="item-info subtitle middle">
-				<span class="mui-icon mui-icon-info item-icon"></span><span class="subtitle" style="padding-right:10px;border-right:solid 1px #a1a1a1;">2015-05-21</span>
-				<span class="mui-icon mui-icon-location item-icon"></span><span class="subtitle">A109</span>
-			</p>
-			<div style="text-align: center;margin-top: 20px;">
-				<hr style="width:125px;border:1px dotted #a1a1a1;display: inline-block;vertical-align: middle;" />
-				<span class="subtitle" style="padding: 0 5px;vertical-align: middle;">详细信息</span>
-				<hr style="width:125px;border:1px dotted #a1a1a1;display: inline-block;vertical-align: middle;" />
-			</div>
-			<p style="padding: 10px 10px;color: #000033;" id="projectDetail">
-				为丰富学生课外文化生活，培养我校学生的创新思维和合作精神，拓展学生运用数学理论和方法，利用已有文献以及计算机等工具分析和解决实际问题的能力。决定举办浙江工商大学2016年大学生数学建模竞赛暨全国大学生数学建模竞赛(浙江赛区)暑期集训队选拔赛。现将有关事项通知如下：
-				<br/>
-			</p>
-			<div style="text-align: center;margin-top: 20px;">
-				<hr style="width:125px;border:1px dotted #a1a1a1;display: inline-block;vertical-align: middle;" />
-				<span class="subtitle" style="padding: 0 5px;vertical-align: middle;">分值说明</span>
-				<hr style="width:125px;border:1px dotted #a1a1a1;display: inline-block;vertical-align: middle;" />
-			</div>
-			<p style="padding: 10px 10px;margin-bottom: 30px;color:#000033">
-				国家级：一等50；二等35；三等30；参与10，省部级：一等30；二等20；三等15；参与5，校级：一等12；二等8；三等5；参与3，院级：一等5；二等3；三等2
-			</p>-->
-			<!--<button type="button" class="mui-btn mui-btn-primary mui-btn-block" style="width: 90%;margin: 0 auto;padding: 12px 0;margin-bottom: 30px;" onclick="FocusProject(this)">关注</button>-->
 		</div>
 		<button id="adding" type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-adding" onclick="FocusProject(this)">关注</button>
 		<script src="js/mui.min.js"></script>
@@ -128,12 +98,7 @@
 					init();
 				});
 			}
-			
-			//			var m = plus.webview.currentWebview().contentData.name;
-			//			alert(m);
-			//			if (m) {
-			//				init();
-			//			}
+
 			function init() {
 				var content = plus.webview.currentWebview().contentData;
 				//				for (var i in content) {
@@ -164,12 +129,6 @@
 					btn.className = btn.className.replace("mui-btn-primary", "mui-btn-danger");
 				}
 			}
-			
-//			function btnStyle(m,info){
-//				if(!info){
-//					
-//				}				
-//			}
 			
 			function FocusProject(obj) {
 				//				alert(getQueryString("id"));
