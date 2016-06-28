@@ -227,7 +227,8 @@
 					"images/img-eg2.jpg",
 					"css/adding.css",
 					"images/img-eg3.jpg",
-					"images/good-filled.png"
+					"images/good-filled.png",
+					"lndex.html"
 				],
 				"refer": [
 					"setting.html",
@@ -299,7 +300,10 @@
 					"images/sinaweibo.png",
 					"images/weixin.png",
 					"images/user-photo.png",
-					"js/config.js"
+					"js/config.js",
+					"js/main.js",
+					"js/require.js",
+					"js/settings.js"
 				],
 				"refer": [
 					"unlock.html",
@@ -319,7 +323,8 @@
 					"My/MyProjectList_Sub1.html"
 				],
 				"refer": [
-					"My/CreateApplication.html"
+					"My/CreateApplication.html",
+					"main.html"
 				],
 				"priority": 0
 			},
@@ -409,7 +414,8 @@
 					"/images/qq.png",
 					"images/qq.png",
 					"images/top.net.ico",
-					"css/add.css"
+					"css/add.css",
+					"js/jquery-1.11.3.min.js"
 				],
 				"refer": [
 					"ProjectDetail.html"
@@ -516,6 +522,33 @@
 					"js/mui.view.js"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"lndex.html": {
+				"resources": [
+					"images/img4.net.ico",
+					"images/img-eg0.jpg",
+					"images/good.png",
+					"images/img-eg2.jpg",
+					"images/top.net.ico",
+					"images/img5.net.ico",
+					"images/img1.png",
+					"images/img0.net.ico",
+					"images/img2.net.ico",
+					"images/img1.net.ico",
+					"images/img3.net.ico",
+					"images/img-eg3.jpg",
+					"images/img-eg1.jpg",
+					"fonts/mui.ttf",
+					"images/user-photo.png",
+					"images/good-filled.png"
+				],
+				"refer": [
+					"ProjectDetail.html",
+					"My/MyProjectList.html",
+					"ManitoDetail.html",
+					"login.html"
+				],
 				"priority": 0
 			}
 		},

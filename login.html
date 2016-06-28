@@ -104,84 +104,85 @@
 			</div>
 			
 		</div>
-		<script src="js/mui.min.js"></script>
-		<script src="js/config.js"></script>
+		<script src="js/require.js" data-main="js/main.js"></script>
+		<!--<script src="js/mui.min.js"></script>
+		<script src="js/config.js"></script>-->
 		<script>
-			(function($, doc) {
-				$.init({
-					
-				});
-				$.plusReady(function() {
-					//仅支持竖屏显示
-					plus.screen.lockOrientation("portrait-primary");					
-					
-					if(window.localStorage.autoLogin=="true")
-					{
-						NewOpenWindow("main.html");
-						//延时关闭 splash
-						setTimeout(function() {plus.navigator.closeSplashscreen();}, 600);
-					}
-					else
-					{
-						//关闭 splash
-						plus.navigator.closeSplashscreen();
-					}
-					
-					var toMain = function() {
-						var EmpNo=document.getElementById("empno").value;
-						var Pwd=document.getElementById("pwd").value;
-						if(EmpNo==""||Pwd=="")
-						{
-							mui.toast("请输入学号和密码");
-							return;
-						}
-						var wa=plus.nativeUI.showWaiting();
-						mui.ajax({
-							url:GP.ServiceUrl+"/Service/Login/Login.ashx?r="+Date.now().toString(),
-							type:"POST",
-							data:{"GP_No":EmpNo,"GP_Password":Pwd},
-							dataType:"json",
-							success:function(dat){
-								if((!dat.ErrorMessage) && dat.LoginResult=="Success")
-								{
-									window.localStorage.empno=EmpNo;
-									window.localStorage.autoLogin=((document.getElementById("autoLogin").className.indexOf("mui-active")>-1)?"true":"false");
-									//clicked("index.html");
-//									NewOpenWindow("main.html");
-									mui.openWindow({
-										id:'main',
-										url:'main.html'
-									})
-								}
-								else
-								{
-									mui.alert("工号或密码错误");
-								}
-							},
-							error:function(e){mui.alert("发生错误，登录失败！"+e.responseText);},
-							complete:function(){wa.close();}							
-						});
-						
-					};					
-
-					var loginButton = doc.getElementById('btnLogin');										
-					loginButton.addEventListener('tap', function(event) {
-						toMain();
-					});
-					
-					//返回按钮
-					$.back = function(event) {
-						if(!mui.os.ios)
-						{
-							if(confirm('确认退出？'))
-							{
-								plus.runtime.quit();
-							}
-						}
-						return false;
-					};
-				});
-			}(mui, document));
+//			(function($, doc) {
+//				$.init({
+//					
+//				});
+//				$.plusReady(function() {
+//					//仅支持竖屏显示
+//					plus.screen.lockOrientation("portrait-primary");					
+//					
+//					if(window.localStorage.autoLogin=="true")
+//					{
+//						NewOpenWindow("main.html");
+//						//延时关闭 splash
+//						setTimeout(function() {plus.navigator.closeSplashscreen();}, 600);
+//					}
+//					else
+//					{
+//						//关闭 splash
+//						plus.navigator.closeSplashscreen();
+//					}
+//					
+//					var toMain = function() {
+//						var EmpNo=document.getElementById("empno").value;
+//						var Pwd=document.getElementById("pwd").value;
+//						if(EmpNo==""||Pwd=="")
+//						{
+//							mui.toast("请输入学号和密码");
+//							return;
+//						}
+//						var wa=plus.nativeUI.showWaiting();
+//						mui.ajax({
+//							url:GP.ServiceUrl+"/Service/Login/Login.ashx?r="+Date.now().toString(),
+//							type:"POST",
+//							data:{"GP_No":EmpNo,"GP_Password":Pwd},
+//							dataType:"json",
+//							success:function(dat){
+//								if((!dat.ErrorMessage) && dat.LoginResult=="Success")
+//								{
+//									window.localStorage.empno=EmpNo;
+//									window.localStorage.autoLogin=((document.getElementById("autoLogin").className.indexOf("mui-active")>-1)?"true":"false");
+//									//clicked("index.html");
+////									NewOpenWindow("main.html");
+//									mui.openWindow({
+//										id:'main',
+//										url:'main.html'
+//									})
+//								}
+//								else
+//								{
+//									mui.alert("工号或密码错误");
+//								}
+//							},
+//							error:function(e){mui.alert("发生错误，登录失败！"+e.responseText);},
+//							complete:function(){wa.close();}							
+//						});
+//						
+//					};					
+//
+//					var loginButton = doc.getElementById('btnLogin');										
+//					loginButton.addEventListener('tap', function(event) {
+//						toMain();
+//					});
+//					
+//					//返回按钮
+//					$.back = function(event) {
+//						if(!mui.os.ios)
+//						{
+//							if(confirm('确认退出？'))
+//							{
+//								plus.runtime.quit();
+//							}
+//						}
+//						return false;
+//					};
+//				});
+//			}(mui, document));
 					
 		</script>
 	</body>
